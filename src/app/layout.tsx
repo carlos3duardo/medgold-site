@@ -1,22 +1,22 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
+import './globals.css';
+import type { Metadata } from 'next';
+import { Poppins } from 'next/font/google';
+import { ReactNode } from 'react';
 
-const font = Poppins({ weight: ['400', '500', '600', '700'], subsets: ['latin'] })
+const font = Poppins({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'MedGold',
   description: 'MedGold - Saúde + Benefícios',
-}
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
       <body className={font.className}>{children}</body>
     </html>
-  )
+  );
 }
