@@ -1,5 +1,5 @@
-import logo from '@/assets/images/header-logo-medgold.png';
 import Image from 'next/image';
+import logo from '@/assets/images/header-logo-medgold.png';
 
 type NavItem = {
   href: string;

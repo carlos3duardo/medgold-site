@@ -3,11 +3,12 @@ import { ButtonCta } from '@/components/ButtonCta';
 export function Welcome() {
   return (
     <section
-      className="h-screen relative flex items-center justify-center"
+      className="h-screen relative flex items-end pb-20 justify-center"
       style={{
         backgroundImage: 'url(images/welcome-background.jpg)',
         backgroundPosition: 'center center',
         backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
       }}
     >
       <div
