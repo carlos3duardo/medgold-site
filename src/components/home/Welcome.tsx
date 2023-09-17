@@ -2,15 +2,16 @@ import { ButtonCta } from '@/components/ButtonCta';
 
 export function Welcome() {
   return (
-    <section
-      className="h-screen relative flex items-end pb-20 justify-center"
-      style={{
-        backgroundImage: 'url(images/welcome-background.jpg)',
-        backgroundPosition: 'center center',
-        backgroundSize: 'cover',
-        backgroundAttachment: 'fixed',
-      }}
-    >
+    <section className="h-screen relative flex items-end pb-20 justify-center overflow-hidden">
+      <video
+        autoPlay
+        loop
+        muted
+        className="absolute right-0 bottom-0 min-w-full min-h-full"
+      >
+        <source src="/videos/welcome-background-2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div
         className="absolute top-0 left-0 w-full h-full"
         style={{
