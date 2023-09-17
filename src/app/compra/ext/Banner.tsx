@@ -10,13 +10,14 @@ export function Banner() {
   const plano = planos.find((item) => item.id === planoId);
 
   return (
-    <figure
-      className=" text-white h-screen relative"
+    <div
+      className="absolute top-0 left-0 w-full bg-primary-400 h-screen"
       style={{
-        backgroundImage: plano ? `url('${plano.thumbnail}')` : '',
+        backgroundImage: plano
+          ? `url('${plano.thumbnail}')`
+          : `url('/images/plano-default-background-1.jpg')`,
         backgroundPosition: 'center center',
         backgroundSize: 'cover',
-        backgroundAttachment: 'fixed',
       }}
     >
       <div
@@ -26,7 +27,6 @@ export function Banner() {
           backdropFilter: 'blur(8px)',
         }}
       />
-      banner
-    </figure>
+    </div>
   );
 }

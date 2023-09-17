@@ -3,7 +3,7 @@ import logo from '@/assets/images/header-logo-medgold.png';
 
 export function Footer() {
   return (
-    <footer className="flex flex-col gap-4">
+    <footer className="flex flex-col">
       <div className="disclaimer py-8">
         <div className="container mx-auto">
           <p className="w-full max-w-7xl mx-auto text-center text-slate-600">
