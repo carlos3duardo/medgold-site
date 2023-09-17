@@ -5,23 +5,23 @@ type NavItem = {
 
 export const menu: NavItem[] = [
   {
-    href: '#o-que-e',
+    href: '/#o-que-e',
     label: 'O que é',
   },
   {
-    href: '#beneficios',
+    href: '/#beneficios',
     label: 'Benefícios',
   },
   {
-    href: '#como',
+    href: '/#como',
     label: 'Como',
   },
   {
-    href: '#cartao-digital',
+    href: '/#cartao-digital',
     label: 'Cartão Digital',
   },
   {
-    href: '#contrate',
+    href: '/#contrate',
     label: 'Contrate agora',
   },
 ];

@@ -26,7 +26,7 @@ export function Header() {
   return (
     <header
       data-solid-background={solidBg}
-      className="fixed top-0 left-0 w-full z-10 transition-all duration-200 data-[solid-background=true]:bg-white data-[solid-background=true]:shadow-md"
+      className="fixed top-0 left-0 w-full z-10 transition-all duration-[600ms] data-[solid-background=true]:bg-white data-[solid-background=true]:shadow-md"
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between py-10">
