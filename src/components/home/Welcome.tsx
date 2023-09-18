@@ -10,7 +10,7 @@ export function Welcome() {
         className="absolute right-0 bottom-0 min-w-full min-h-full"
       >
         <source src="/videos/welcome-background-2.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
+        Seu navegador não suporta a reprodução de vídeo
       </video>
       <div
         className="absolute top-0 left-0 w-full h-full"
