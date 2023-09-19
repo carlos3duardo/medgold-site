@@ -12,8 +12,6 @@ export function Header() {
     const position = window.scrollY;
 
     setSolidBg(position > 240);
-
-    console.info({ position });
   };
 
   useEffect(() => {

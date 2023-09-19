@@ -9,13 +9,18 @@ type FormStep = {
 interface FormStepProps {
   steps: FormStep[];
   currentStep: number;
+  changeCurrentStep: (step: number) => void;
 }
 
-export function FormSteps({ steps, currentStep = 1 }: FormStepProps) {
+export function FormSteps({
+  steps,
+  currentStep = 1,
+  changeCurrentStep,
+}: FormStepProps) {
   return (
     <ul className="flex flex-col gap-4">
       {steps.map((step) => (
-        <li key={step.id}>
+        <li key={step.id} onClick={() => changeCurrentStep(step.id)}>
           <div className="flex items-center gap-2">
             {currentStep === step.id ? (
               <figure className="h-12 w-12 text-xl font-bold bg-primary-600 text-white rounded-full flex items-center justify-center">
@@ -26,7 +31,7 @@ export function FormSteps({ steps, currentStep = 1 }: FormStepProps) {
                 <Check size={18} strokeWidth={4} />
               </figure>
             ) : (
-              <figure className="h-12 w-12 text-xl font-bold bg-slate-200 text-slate-400 rounded-full flex items-center justify-center">
+              <figure className="h-12 w-12 text-xl font-bold bg-slate-100 text-slate-300 rounded-full flex items-center justify-center">
                 {step.id}
               </figure>
             )}
