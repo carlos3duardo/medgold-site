@@ -1,11 +1,19 @@
 import Image from 'next/image';
 
 import imagem from '@/assets/images/telemedicina-o-que-e.png';
+
 import { ButtonCta } from '../ButtonCta';
 
 export function Telemedicina() {
   return (
-    <section className="mt-20 mb-20">
+    <section
+      className="py-20 bg-red-100"
+      style={{
+        backgroundImage: 'url("images/background-sun-tornado.svg")',
+        backgroundPosition: 'center center',
+        backgroundSize: 'cover',
+      }}
+    >
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-8">
           <figure className="flex-[42%] lg:flex lg:justify-center">

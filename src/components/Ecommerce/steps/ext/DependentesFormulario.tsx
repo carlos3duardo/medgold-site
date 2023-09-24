@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Form } from '@/components';
 import { ShoppingContext } from '@/contexts';
 import { Button } from '@/components/Button';
+import { isCPF, isDate } from 'brazilian-values';
 
 export function DependentesFormulario() {
   const { adicionarDependente, plano, dependentes, atualizarEtapa } =
@@ -27,14 +28,24 @@ export function DependentesFormulario() {
     cpf: z
       .string()
       .nonempty({ message: 'O CPF é um campo obrigatório.' })
-      .length(14, { message: 'CPF inválido.' })
+      .refine(
+        (value) => {
+          return isCPF(value);
+        },
+        { message: 'CPF inválido.' },
+      )
       .transform((value) => {
         return value.replace(/\D/g, '');
       }),
     nascimento: z
       .string()
       .nonempty({ message: 'O nascimento é um campo obrigatório.' })
-      .length(10, { message: 'Data inválida' })
+      .refine(
+        (value) => {
+          return isDate(value);
+        },
+        { message: 'Data inválida.' },
+      )
       .transform((val) => {
         if (val.length === 10) {
           const [d, m, Y] = val.split('/');
@@ -106,7 +117,7 @@ export function DependentesFormulario() {
                   />
                 </Form.Control>
                 <Form.Control className="col-span-12 mb:col-span-4 xl:col-span-4">
-                  <Form.TextInput
+                  <Form.DateInput
                     label="Nascimento"
                     name="nascimento"
                     error={errors.nascimento}
@@ -121,7 +132,7 @@ export function DependentesFormulario() {
                   />
                 </Form.Control>
                 <Form.Control className="col-span-12 mb:col-span-4 xl:col-span-4">
-                  <Form.TextInput label="CPF" name="cpf" error={errors.cpf} />
+                  <Form.CpfInput label="CPF" name="cpf" error={errors.cpf} />
                 </Form.Control>
               </Form.Fieldset>
               <Form.Separator />
