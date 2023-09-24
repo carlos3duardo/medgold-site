@@ -1,21 +1,25 @@
 'use client';
-import { useSearchParams } from 'next/navigation';
-import { planos } from '@/data';
+import { ShoppingContext } from '@/contexts';
+import { useContext, useEffect, useState } from 'react';
 
 export function Banner() {
-  const searchParams = useSearchParams();
+  const [bannerUrl, setBannerUrl] = useState(
+    'images/plano-default-background-2.jpg',
+  );
 
-  const planoId = searchParams.get('plano_id');
+  const { plano } = useContext(ShoppingContext);
 
-  const plano = planos.find((item) => item.id === planoId);
+  useEffect(() => {
+    if (plano) {
+      setBannerUrl(plano.thumbnail);
+    }
+  }, [plano]);
 
   return (
     <div
       className="relative w-full h-[560px] flex items-end justify-center"
       style={{
-        backgroundImage: plano
-          ? `url('${plano.thumbnail}')`
-          : `url('/images/plano-default-background-1.jpg')`,
+        backgroundImage: `url('${bannerUrl}')`,
         backgroundPosition: 'center center',
         backgroundSize: 'cover',
       }}

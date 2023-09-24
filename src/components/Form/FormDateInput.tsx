@@ -1,11 +1,8 @@
 'use client';
 import { ComponentProps, ElementType } from 'react';
-import Image from 'next/image';
 import { FieldError, useFormContext } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { AlertCircle } from 'lucide-react';
-
-import spinner from '@/assets/spinners/ring-with-bg.svg';
 
 type FormInputProps = ComponentProps<'input'> & {
   id?: string;
@@ -13,10 +10,9 @@ type FormInputProps = ComponentProps<'input'> & {
   label?: string;
   error?: FieldError;
   icon?: ElementType;
-  isLoading?: boolean;
 };
 
-export function FormCepInput({
+export function FormDateInput({
   id,
   name,
   label,
@@ -24,8 +20,6 @@ export function FormCepInput({
   placeholder,
   disabled = false,
   readOnly = false,
-  isLoading = false,
-  onBlur,
   ...rest
 }: FormInputProps) {
   const { register, getValues } = useFormContext();
@@ -54,20 +48,10 @@ export function FormCepInput({
             {...register(name)}
             placeholder={placeholder}
             className="w-full text-md lg:text-lg font-medium bg-transparent flex-1 focus:outline-none text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
-            mask="99.999-999"
+            mask="99/99/9999"
             maskChar={null}
             defaultValue={defaultValue}
-            onBlur={onBlur}
           />
-          {isLoading && (
-            <Image
-              src={spinner}
-              width={24}
-              height={24}
-              alt="loading"
-              className="opacity-60"
-            />
-          )}
         </div>
       </div>
       {error && (

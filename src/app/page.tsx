@@ -1,3 +1,4 @@
+'use client';
 import { Beneficios } from '@/components/home/Beneficios';
 import { CartaoDigital } from '@/components/home/CartaoDigital';
 import { ComoSeCadastrar } from '@/components/home/ComoSeCadastrar';

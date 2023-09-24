@@ -8,6 +8,8 @@ import { FormTextInput } from './FormTextInput';
 import { FormCepInput } from './FormCepInput';
 import { FormCpfInput } from './FormCpfInput';
 import { FormCelularInput } from './FormCelularInput';
+import { FormDateInput } from './FormDateInput';
+import { FormSelect } from './FormSelect';
 import { FormFooter } from './FormFooter';
 
 export const Form = {
@@ -20,6 +22,8 @@ export const Form = {
   CepInput: FormCepInput,
   CpfInput: FormCpfInput,
   CelularInput: FormCelularInput,
+  DateInput: FormDateInput,
+  Select: FormSelect,
   Submit: FormSubmit,
   Footer: FormFooter,
 };

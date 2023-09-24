@@ -1,4 +1,4 @@
-type PlanoProps = {
+export type PlanoProps = {
   id: string;
   nome: string;
   descricao: string;

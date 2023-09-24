@@ -8,7 +8,7 @@ type FooterProps = ComponentProps<'div'> & {
 
 export function FormFooter({ children, className, ...rest }: FooterProps) {
   return (
-    <div className={twMerge('', className)} {...rest}>
+    <div className={twMerge('flex gap-2', className)} {...rest}>
       {children}
     </div>
   );

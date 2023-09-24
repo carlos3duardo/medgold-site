@@ -1,3 +1,5 @@
 import { Form } from './Form';
+import { Banner } from './Banner';
+import { Dialog } from './Dialog';
 
-export { Form };
+export { Banner, Form, Dialog };

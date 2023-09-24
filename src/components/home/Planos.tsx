@@ -1,8 +1,26 @@
-import { ButtonCta } from '@/components/ButtonCta';
-import { planos } from '@/data';
+'use client';
+import { useCallback, useContext } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { ButtonCta } from '@/components/ButtonCta';
+import { PlanoProps, planos } from '@/data';
+import { ShoppingContext } from '@/contexts';
 
 export function Planos() {
+  const router = useRouter();
+
+  const { atualizarEtapa, atualizarPlano } = useContext(ShoppingContext);
+
+  const handleSelectPlano = useCallback(
+    (plano: PlanoProps) => {
+      atualizarPlano(plano.id);
+      atualizarEtapa(1);
+
+      router.push('/contratar');
+    },
+    [atualizarEtapa, atualizarPlano, router],
+  );
+
   return (
     <section className="pt-20 pb-20 bg-primary-600 text-white" id="contrate">
       <div className="container mx-auto flex flex-col gap-12">
@@ -42,7 +60,7 @@ export function Planos() {
                   </div>
                 </div>
                 <div>
-                  <ButtonCta href={`compra?plano_id=${plano.id}`}>
+                  <ButtonCta onClick={() => handleSelectPlano(plano)}>
                     contratar
                   </ButtonCta>
                 </div>

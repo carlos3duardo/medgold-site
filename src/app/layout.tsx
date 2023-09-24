@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import { ReactNode } from 'react';
 import { Footer } from '@/components/Footer';
+import { ShoppingProvider } from '@/contexts/ShoppingContext';
 
 const font = Poppins({
   weight: ['400', '500', '600', '700', '800', '900'],
@@ -17,16 +18,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR">
-      <body
-        className={`${font.className} min-h-screen flex flex-col justify-between`}
-      >
-        <Header />
+    <ShoppingProvider>
+      <html lang="pt-BR">
+        <body
+          className={`${font.className} min-h-screen flex flex-col justify-between`}
+        >
+          <Header />
 
-        <main>{children}</main>
+          <main>{children}</main>
 
-        <Footer />
-      </body>
-    </html>
+          <Footer />
+        </body>
+      </html>
+    </ShoppingProvider>
   );
 }

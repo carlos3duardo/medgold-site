@@ -68,7 +68,7 @@ interface FormProps {
   changeCurrentStep: (step: number) => void;
 }
 
-export function FormDadosPessoais({ changeCurrentStep }: FormProps) {
+export function AdicionarDadosPessoais({ changeCurrentStep }: FormProps) {
   const [isCepLoading, setIsCepLoading] = useState(false);
 
   const methods = useForm<FormData>({
