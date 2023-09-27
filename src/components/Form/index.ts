@@ -12,6 +12,7 @@ import { FormDateInput } from './FormDateInput';
 import { FormCartaoDeCreditoiInput } from './FormCartaoDeCreditoInput';
 import { FormMaskInput } from './FormMaskInput';
 import { FormSelect } from './FormSelect';
+import { FormCheckbox } from './FormCheckbox';
 import { FormFooter } from './FormFooter';
 
 export const Form = {
@@ -28,6 +29,7 @@ export const Form = {
   CartaoDeCreditoInput: FormCartaoDeCreditoiInput,
   MaskInput: FormMaskInput,
   Select: FormSelect,
+  Checkbox: FormCheckbox,
   Submit: FormSubmit,
   Footer: FormFooter,
 };

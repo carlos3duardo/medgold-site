@@ -17,17 +17,16 @@ export function AdicionarTitular() {
 
   const methods = useForm<TitularFormType>({
     resolver: zodResolver(TitularFormSchema),
-    defaultValues: async () => {
-      return {
-        ...titular,
-        cpf: titular && titular.cpf ? maskCpf(titular.cpf) : '',
-        cep: titular && titular.cep ? maskCep(titular.cep) : '',
-        nascimento:
-          titular && titular.nascimento
-            ? format(parseISO(titular.nascimento), 'dd/MM/yyyy')
-            : '',
-      };
+    defaultValues: {
+      ...titular,
+      cpf: titular && titular.cpf ? maskCpf(titular.cpf) : '',
+      cep: titular && titular.cep ? maskCep(titular.cep) : '',
+      nascimento:
+        titular && titular.nascimento
+          ? format(parseISO(titular.nascimento), 'dd/MM/yyyy')
+          : '',
     },
+    mode: 'onSubmit',
   });
 
   const {

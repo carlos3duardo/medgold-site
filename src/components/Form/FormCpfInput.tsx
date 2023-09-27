@@ -1,6 +1,6 @@
 'use client';
 import { ComponentProps, ElementType } from 'react';
-import { FieldError, useFormContext } from 'react-hook-form';
+import { Controller, FieldError, useFormContext } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { AlertCircle } from 'lucide-react';
 
@@ -20,11 +20,11 @@ export function FormCpfInput({
   placeholder,
   disabled = false,
   readOnly = false,
+  onChange,
+  onBlur,
   ...rest
 }: FormInputProps) {
-  const { register, getValues } = useFormContext();
-
-  const defaultValue = getValues(name);
+  const { control } = useFormContext();
 
   return (
     <>
@@ -43,14 +43,31 @@ export function FormCpfInput({
         )}
 
         <div className="flex items-center w-full">
-          <InputMask
-            id={id || name}
-            {...register(name)}
-            placeholder={placeholder}
-            className="w-full text-md lg:text-lg font-medium bg-transparent flex-1 focus:outline-none text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
-            mask="999.999.999-99"
-            maskChar={null}
-            defaultValue={defaultValue}
+          <Controller
+            name={name}
+            control={control}
+            render={({
+              field: { onChange: inputOnChange, onBlur: inputOnBlur, ...field },
+            }) => (
+              <InputMask
+                value={field.value}
+                mask="999.999.999-99"
+                maskChar={null}
+                className="w-full text-md lg:text-lg font-medium bg-transparent flex-1 focus:outline-none text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                onChange={(evt) => {
+                  if (onChange) {
+                    onChange(evt);
+                  }
+                  inputOnChange(evt);
+                }}
+                onBlur={(evt) => {
+                  if (onBlur) {
+                    onBlur(evt);
+                  }
+                  inputOnBlur();
+                }}
+              />
+            )}
           />
         </div>
       </div>
