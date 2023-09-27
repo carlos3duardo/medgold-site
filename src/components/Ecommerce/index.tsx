@@ -4,6 +4,7 @@ import { ShoppingContext } from '@/contexts';
 import { AdicionarTitular } from './steps/AdicionarTitular';
 import { AdicionarDependentes } from './steps/AdicionarDependentes';
 import { ConfirmarDados } from './steps/ConfirmarDados';
+import { Pagamento } from './steps/Pagamento';
 
 interface TituloProps {
   descricao: string;
@@ -50,6 +51,15 @@ export default function Ecommerce() {
       <>
         <Titulo descricao="Confirme os dados informados" />
         <ConfirmarDados />
+      </>
+    );
+  }
+
+  if (etapaAtual === 4) {
+    return (
+      <>
+        <Titulo descricao="Pagamento" />
+        <Pagamento />
       </>
     );
   }

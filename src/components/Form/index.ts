@@ -9,6 +9,8 @@ import { FormCepInput } from './FormCepInput';
 import { FormCpfInput } from './FormCpfInput';
 import { FormCelularInput } from './FormCelularInput';
 import { FormDateInput } from './FormDateInput';
+import { FormCartaoDeCreditoiInput } from './FormCartaoDeCreditoInput';
+import { FormMaskInput } from './FormMaskInput';
 import { FormSelect } from './FormSelect';
 import { FormFooter } from './FormFooter';
 
@@ -23,6 +25,8 @@ export const Form = {
   CpfInput: FormCpfInput,
   CelularInput: FormCelularInput,
   DateInput: FormDateInput,
+  CartaoDeCreditoInput: FormCartaoDeCreditoiInput,
+  MaskInput: FormMaskInput,
   Select: FormSelect,
   Submit: FormSubmit,
   Footer: FormFooter,

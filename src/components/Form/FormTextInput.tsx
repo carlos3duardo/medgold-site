@@ -23,9 +23,19 @@ export const FormTextInput: FC<FormInputProps> = ({
   placeholder,
   disabled = false,
   readOnly = false,
+  onFocus,
+  onBlur,
+  onChange,
   ...rest
 }) => {
   const { register } = useFormContext();
+
+  const {
+    onChange: inputOnChange,
+    onBlur: inputOnBlur,
+    name: inputName,
+    ref,
+  } = register(name);
 
   return (
     <>
@@ -45,9 +55,9 @@ export const FormTextInput: FC<FormInputProps> = ({
 
         <div className="flex items-center w-full">
           <input
-            {...register(name)}
             type="text"
             id={id || name}
+            name={inputName}
             data-uppercase={uppercase}
             data-lowercase={lowercase}
             data-disabled={disabled}
@@ -56,6 +66,24 @@ export const FormTextInput: FC<FormInputProps> = ({
             className="w-full text-md lg:text-lg font-medium bg-transparent flex-1 focus:outline-none text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed data-[uppercase=true]:uppercase data-[lowercase=true]:lowercase"
             placeholder={placeholder}
             readOnly={readOnly}
+            onFocus={(evt) => {
+              if (onFocus) {
+                onFocus(evt);
+              }
+            }}
+            onChange={(evt) => {
+              if (onChange) {
+                onChange(evt);
+              }
+              inputOnChange(evt);
+            }}
+            onBlur={(evt) => {
+              if (onBlur) {
+                onBlur(evt);
+              }
+              inputOnBlur(evt);
+            }}
+            ref={ref}
             {...rest}
           />
         </div>

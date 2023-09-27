@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Dialog } from '@/components';
 
 export function ConfirmarDados() {
-  const { plano, titular, dependentes, removerDependente } =
+  const { plano, titular, dependentes, removerDependente, atualizarEtapa } =
     useContext(ShoppingContext);
 
   const handleRemoverDependente = useCallback(
@@ -77,7 +77,7 @@ export function ConfirmarDados() {
           </div>
           <div className="col-span-12 lg:col-span-4">
             <label className="block text-sm text-slate-400">Sexo:</label>
-            <span className="uppercase">{titular.sexo}</span>
+            <span className="uppercase">{titular.sexo_id}</span>
           </div>
           <div className="col-span-12 lg:col-span-8">
             <label className="block text-sm text-slate-400">Endereço:</label>
@@ -181,7 +181,7 @@ export function ConfirmarDados() {
         </section>
       ) : (
         <div>
-          <Button color="primary">
+          <Button color="primary" onClick={() => atualizarEtapa(4)}>
             <Wallet /> Seguir para Pagamento
           </Button>
         </div>
