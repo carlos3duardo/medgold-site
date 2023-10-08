@@ -13,6 +13,8 @@ import { CreditCard, ShoppingCart, UserSquare } from 'lucide-react';
 import { Form, CartaoDeCredito } from '@/components';
 import { isCPF } from 'brazilian-values';
 import { ShoppingContext } from '@/contexts';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   portador: z.string().nonempty('O nome do portador é obrigatório'),
@@ -54,7 +56,10 @@ const formSchema = z.object({
   portadorCep: z
     .string()
     .nonempty({ message: 'Campo obrigatório' })
-    .length(10, { message: 'CEP Inválido.' }),
+    .length(8, { message: 'CEP Inválido.' })
+    .transform((value) => {
+      return value.replace(/\D/g, '');
+    }),
   portadorLogradouro: z.string().nonempty({ message: 'Campo obrigatório' }),
   portadorNumero: z.string().nonempty({ message: 'Campo obrigatório' }),
   portadorComplemento: z
@@ -71,23 +76,59 @@ type FormData = z.infer<typeof formSchema>;
 
 export function Pagamento() {
   const [isCepLoading, setIsCepLoading] = useState(false);
-  const { titular } = useContext(ShoppingContext);
+  const { titular, limparDados } = useContext(ShoppingContext);
+
+  const router = useRouter();
 
   const methods = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       portadorCpf: '',
+      portadorCep: '',
+      portadorTelefone: '',
     },
   });
 
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     setValue,
   } = methods;
 
   async function submitForm(data: FormData) {
-    console.log(data);
+    const ipRequest = await fetch('https://ipv4.seeip.org/jsonip');
+    const ipResponseJson = await ipRequest.json();
+
+    await axios
+      .post('/checkout', {
+        ip: ipResponseJson.ip,
+        cartao: {
+          numero: data.numero,
+          portador: data.portador,
+          validade: data.validade,
+          cvv,
+        },
+        portador: {
+          nome: data.portadorNome,
+          cpf: data.portadorCpf,
+          email: data.portadorEmail,
+          telefone: data.portadorTelefone,
+          logradouro: data.portadorLogradouro,
+          numero: data.portadorNumero,
+          complemento: data.portadorComplemento,
+          cep: data.portadorCep,
+          bairro: data.portadorBairro,
+          municipio: data.portadorMunicipio,
+          uf: data.portadorUf,
+        },
+      })
+      .then(() => {
+        limparDados();
+        router.push('/sucesso');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   const [portador, setPortador] = useState('');
@@ -152,7 +193,11 @@ export function Pagamento() {
     <div className="flex flex-col gap-8">
       <Form.Root>
         <FormProvider {...methods}>
-          <Form.Body onSubmit={handleSubmit(submitForm)}>
+          <Form.Body
+            onSubmit={handleSubmit(submitForm)}
+            isSubmitting={isSubmitting}
+            data-submitting={isSubmitting}
+          >
             <section className="mt-8">
               <h2 className="flex items-center gap-2 text-2xl text-slate-600 font-extrabold mb-4 border-b border-slate-300 pb-3">
                 <CreditCard strokeWidth={3} /> Dados do cartão

@@ -8,3 +8,15 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 9999s ease-in-out 0s;
 }
+
+
+@layer components {
+  .skeleton {
+    background-color: #cbd5e1;
+    /* The shine that's going to move across the skeleton: */
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    background-size: 40px 100%; /* width of the shine */
+    background-repeat: no-repeat; /* No need to repeat the shine effect */
+    background-position: left -40px top 0; /* Place shine on the left side, with offset on the left based on the width of the shine - see background-size */
+  }
+}

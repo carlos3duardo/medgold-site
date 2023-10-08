@@ -1,15 +1,30 @@
 'use client';
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { ShoppingContext } from '@/contexts';
 import { FolderHeart, Trash2, User, Users, Wallet } from 'lucide-react';
 import { dateBr, maskCep, maskCpf, maskTelefone } from '@/helpers';
 import { Button } from '@/components/Button';
 import Link from 'next/link';
 import { Dialog } from '@/components';
+import { OfertaProps } from '@/contexts/ShoppingContext';
 
 export function ConfirmarDados() {
-  const { plano, titular, dependentes, removerDependente, atualizarEtapa } =
-    useContext(ShoppingContext);
+  const {
+    ofertaId,
+    ofertas,
+    titular,
+    dependentes,
+    removerDependente,
+    atualizarEtapa,
+  } = useContext(ShoppingContext);
+
+  const [oferta, setOferta] = useState<OfertaProps | undefined>(undefined);
+
+  useEffect(() => {
+    if (ofertaId && ofertas) {
+      setOferta(ofertas.find((item) => item.id === ofertaId));
+    }
+  }, [ofertaId, ofertas]);
 
   const handleRemoverDependente = useCallback(
     (dependenteId: string) => {
@@ -31,15 +46,15 @@ export function ConfirmarDados() {
         <h2 className="flex items-center gap-2 text-2xl text-slate-600 font-extrabold mb-4 border-b border-slate-300 pb-3">
           <FolderHeart strokeWidth={3} /> Plano selecionado
         </h2>
-        {plano && (
+        {oferta && (
           <div>
-            <h3 className="text-xl text-slate-600 font-bold">{plano.nome}</h3>
-            <p>{plano.descricao}</p>
+            <h3 className="text-xl text-slate-600 font-bold">{oferta.nome}</h3>
+            <p>{oferta.descricao}</p>
             <p>
               Valor mensal: R${' '}
               {new Intl.NumberFormat('pt-BR', {
                 minimumFractionDigits: 2,
-              }).format(plano.valor)}
+              }).format(oferta.valor)}
             </p>
           </div>
         )}
@@ -164,7 +179,7 @@ export function ConfirmarDados() {
         </section>
       )}
 
-      {plano && plano.dependentes < dependentes.length ? (
+      {oferta && oferta.dependentes < dependentes.length ? (
         <section className="bg-red-100 p-8 rounded-lg flex gap-8 justify-between items-center">
           <p className="message text-red-800">
             Você adicionou mais dependentes do que o seu plano permite.

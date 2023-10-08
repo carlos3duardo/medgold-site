@@ -8,14 +8,18 @@ export function AdicionarDependentes() {
   const [exibirTabela, setExibirTabela] = useState(false);
   const [exibirFormulario, setExibirFormulario] = useState(false);
 
-  const { plano } = useContext(ShoppingContext);
+  const { ofertaId, ofertas } = useContext(ShoppingContext);
 
   useEffect(() => {
-    if (plano) {
-      setExibirTabela(!!plano.dependentes);
-      setExibirFormulario(!!plano.dependentes);
+    if (ofertaId && ofertas) {
+      const oferta = ofertas.find((item) => item.id === ofertaId);
+
+      if (oferta) {
+        setExibirTabela(!!oferta.dependentes);
+        setExibirFormulario(!!oferta.dependentes);
+      }
     }
-  }, [plano]);
+  }, [ofertaId, ofertas]);
 
   return (
     <div>

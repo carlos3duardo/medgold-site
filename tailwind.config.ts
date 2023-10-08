@@ -39,6 +39,9 @@ const config: Config = {
       },
       backgroundImage: {},
       keyframes: {
+        shine: {
+          to: { backgroundPosition: 'right -40px top 0' },
+        },
         backgroundTelemedicina: {
           '0%': {
             transform: 'translateY(0) rotate(0deg)',
@@ -53,6 +56,7 @@ const config: Config = {
         },
       },
       animation: {
+        shine: 'shine 1s ease infinite',
         backgroundTelemedicina: 'backgroundTelemedicina 25s linear infinite',
       },
     },

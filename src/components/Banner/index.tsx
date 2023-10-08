@@ -7,13 +7,17 @@ export function Banner() {
     'images/plano-default-background-2.jpg',
   );
 
-  const { plano } = useContext(ShoppingContext);
+  const { ofertaId, ofertas } = useContext(ShoppingContext);
 
   useEffect(() => {
-    if (plano) {
-      setBannerUrl(plano.thumbnail);
+    if (ofertas && ofertaId) {
+      const oferta = ofertas.find((item) => item.id === ofertaId);
+
+      if (oferta) {
+        setBannerUrl(oferta?.imageUrl);
+      }
     }
-  }, [plano]);
+  }, [ofertaId, ofertas]);
 
   return (
     <div

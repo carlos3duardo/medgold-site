@@ -1,11 +1,25 @@
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { ShoppingContext } from '@/contexts';
 import { Trash2, Users } from 'lucide-react';
 import { dateBr, maskCpf } from '@/helpers';
 import { Dialog } from '@/components';
+import { OfertaProps } from '@/contexts/ShoppingContext';
 
 export function DependentesTabela() {
-  const { dependentes, plano, removerDependente } = useContext(ShoppingContext);
+  const [oferta, setOferta] = useState<OfertaProps | undefined>(undefined);
+
+  const { dependentes, ofertaId, ofertas, removerDependente } =
+    useContext(ShoppingContext);
+
+  useEffect(() => {
+    if (ofertas && ofertaId) {
+      const ofertaSelecionada = ofertas.find((item) => item.id === ofertaId);
+
+      if (ofertaSelecionada) {
+        setOferta(ofertaSelecionada);
+      }
+    }
+  }, []);
 
   const handleRemoverDependente = useCallback(
     (dependenteId: string) => {
@@ -23,7 +37,7 @@ export function DependentesTabela() {
     [removerDependente],
   );
 
-  if (!plano || !plano.dependentes) {
+  if (!oferta || !oferta.dependentes) {
     return '';
   }
 

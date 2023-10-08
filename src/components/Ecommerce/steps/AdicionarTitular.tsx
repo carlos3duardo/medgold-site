@@ -7,7 +7,6 @@ import { FocusEvent, useContext, useState } from 'react';
 import { ShoppingContext } from '@/contexts';
 import { TitularFormSchema, TitularFormType } from '@/models/Titular';
 import { format, parseISO } from 'date-fns';
-import { maskCep, maskCpf } from '@/helpers';
 
 export function AdicionarTitular() {
   const { atualizarEtapa, titular, atualizarTitular } =
@@ -19,8 +18,9 @@ export function AdicionarTitular() {
     resolver: zodResolver(TitularFormSchema),
     defaultValues: {
       ...titular,
-      cpf: titular && titular.cpf ? maskCpf(titular.cpf) : '',
-      cep: titular && titular.cep ? maskCep(titular.cep) : '',
+      telefone: titular && titular.telefone ? titular.telefone : '',
+      cpf: titular && titular.cpf ? titular.cpf : '',
+      cep: titular && titular.cep ? titular.cep : '',
       nascimento:
         titular && titular.nascimento
           ? format(parseISO(titular.nascimento), 'dd/MM/yyyy')
@@ -53,6 +53,9 @@ export function AdicionarTitular() {
         setValue('bairro', res.neighborhood);
         setValue('municipio', res.city);
         setValue('uf', res.state);
+      })
+      .catch((err) => {
+        console.error({ message: 'Erro ao consultar cep.', erro: err });
       })
       .finally(() => {
         setIsCepLoading(false);

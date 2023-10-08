@@ -1,12 +1,5 @@
 'use client';
-import {
-  ComponentProps,
-  FormEvent,
-  ReactNode,
-  useContext,
-  useEffect,
-} from 'react';
-import { FormContext } from './FormContext';
+import { ComponentProps, FormEvent, ReactNode } from 'react';
 
 type FormProps = ComponentProps<'form'> & {
   method?: 'post' | 'get';
@@ -21,17 +14,11 @@ export function FormBody({
   children,
   ...rest
 }: FormProps) {
-  const { formIsSubmitting } = useContext(FormContext);
-
   const handleSubmitForm = (evt: FormEvent<HTMLFormElement>) => {
     if (onSubmit) {
       onSubmit(evt);
     }
   };
-
-  useEffect(() => {
-    formIsSubmitting(isSubmitting);
-  }, [formIsSubmitting, isSubmitting]);
 
   return (
     <form

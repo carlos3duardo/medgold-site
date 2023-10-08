@@ -5,6 +5,7 @@ import { AdicionarTitular } from './steps/AdicionarTitular';
 import { AdicionarDependentes } from './steps/AdicionarDependentes';
 import { ConfirmarDados } from './steps/ConfirmarDados';
 import { Pagamento } from './steps/Pagamento';
+import { Sucesso } from './steps/Sucesso';
 
 interface TituloProps {
   descricao: string;
@@ -18,15 +19,15 @@ function Titulo({ descricao }: TituloProps) {
 
 export default function Ecommerce() {
   const [etapaAtual, setEtapaAtual] = useState(1);
-  const { etapa, plano } = useContext(ShoppingContext);
+  const { etapa, ofertaId } = useContext(ShoppingContext);
 
   useEffect(() => {
-    if (!plano) {
+    if (!ofertaId) {
       location.href = '/?noplan';
     }
 
     setEtapaAtual(etapa);
-  }, [plano, etapa]);
+  }, [ofertaId, etapa]);
 
   if (etapaAtual === 1) {
     return (
@@ -60,6 +61,14 @@ export default function Ecommerce() {
       <>
         <Titulo descricao="Pagamento" />
         <Pagamento />
+      </>
+    );
+  }
+
+  if (etapaAtual === 5) {
+    return (
+      <>
+        <Sucesso />
       </>
     );
   }

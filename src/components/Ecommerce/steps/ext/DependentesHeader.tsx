@@ -1,29 +1,37 @@
 'use client';
 import { useContext, useEffect, useState } from 'react';
 import { ShoppingContext } from '@/contexts';
-import { planos, PlanoProps } from '@/data';
 import { ChevronsRight, CopyCheck, Smile, ThumbsUp } from 'lucide-react';
 import { Button } from '@/components/Button';
+import { OfertaProps } from '@/contexts/ShoppingContext';
 
 export function DependentesHeader() {
-  const { plano, atualizarEtapa, atualizarPlano } = useContext(ShoppingContext);
-  const [proximoPlano, setProximoPlano] = useState<PlanoProps | undefined>(
+  const { ofertaId, ofertas, atualizarEtapa, atualizarOfertaId } =
+    useContext(ShoppingContext);
+  const [oferta, setOferta] = useState<OfertaProps | undefined>(undefined);
+
+  const [proximoPlano, setProximoPlano] = useState<OfertaProps | undefined>(
     undefined,
   );
 
   useEffect(() => {
-    if (plano) {
-      const proximo = planos.find(
-        (item) => item.dependentes > plano.dependentes,
-      );
+    if (ofertaId && ofertas) {
+      const oferta = ofertas.find((item) => item.id === ofertaId);
 
-      if (proximo) {
-        setProximoPlano(proximo);
+      if (oferta) {
+        setOferta(oferta);
+        const proximo = ofertas.find(
+          (item) => item.dependentes > oferta.dependentes,
+        );
+
+        if (proximo) {
+          setProximoPlano(proximo);
+        }
       }
     }
-  }, [plano]);
+  }, [ofertaId, ofertas]);
 
-  if (!plano) {
+  if (!oferta) {
     return <div>nenhum plano selecionado...</div>;
   }
 
@@ -36,20 +44,20 @@ export function DependentesHeader() {
         <div>
           Você selecionou o plano{' '}
           <span className="underline underline-offset-4 font-semibold">
-            {plano.nome}
+            {oferta.nome}
           </span>{' '}
           por R${' '}
           <span className="font-semibold">
             {new Intl.NumberFormat('pt-BR', {
               currency: 'BRL',
               minimumFractionDigits: 2,
-            }).format(plano.valor)}
+            }).format(oferta.valor)}
           </span>
           .
         </div>
       </div>
 
-      {!plano.dependentes && proximoPlano && (
+      {!oferta.dependentes && proximoPlano && (
         <div className="flex flex-col gap-4">
           <div className="flex gap-2 font-medium bg-secondary-50 border border-secondary-200 text-secondary-600 p-3 rounded-md">
             <figure>
@@ -60,9 +68,9 @@ export function DependentesHeader() {
               {new Intl.NumberFormat('pt-BR', {
                 currency: 'BRL',
                 minimumFractionDigits: 2,
-              }).format(proximoPlano.valor - plano.valor)}{' '}
+              }).format(proximoPlano.valor - oferta.valor)}{' '}
               você pode adicionar +
-              {proximoPlano.dependentes - plano.dependentes} dependentes no
+              {proximoPlano.dependentes - oferta.dependentes} dependentes no
               plano{` `}
               <span className="underline underline-offset-4 font-semibold">
                 {proximoPlano.nome}
@@ -73,7 +81,7 @@ export function DependentesHeader() {
           <div className="flex gap-4">
             <Button
               color="secondary"
-              onClick={() => atualizarPlano(proximoPlano.id)}
+              onClick={() => atualizarOfertaId(proximoPlano.id)}
             >
               <ThumbsUp /> Atualizar plano
             </Button>

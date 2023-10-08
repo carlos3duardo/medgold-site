@@ -1,3 +1,4 @@
+import { isCEP, isCPF } from 'brazilian-values';
 import { z } from 'zod';
 
 export const TitularFormSchema = z.object({
@@ -9,7 +10,12 @@ export const TitularFormSchema = z.object({
     .max(120, { message: 'Campo não pode possuir mais de 120 caracteres.' }),
   cpf: z
     .string()
-    .length(14, { message: 'CPF inválido.' })
+    .refine(
+      (value) => {
+        return isCPF(value);
+      },
+      { message: 'CPF inválido.' },
+    )
     .transform((val) => {
       return val.replace(/\D/g, '');
     }),
@@ -45,7 +51,15 @@ export const TitularFormSchema = z.object({
   cep: z
     .string()
     .nonempty({ message: 'Campo obrigatório' })
-    .length(10, { message: 'CEP Inválido.' }),
+    .refine(
+      (value) => {
+        return isCEP(value);
+      },
+      { message: 'CEP inválido.' },
+    )
+    .transform((value) => {
+      return value.replace(/\D/g, '');
+    }),
   logradouro: z.string().nonempty({ message: 'Campo obrigatório' }),
   numero: z.string().nonempty({ message: 'Campo obrigatório' }),
   complemento: z

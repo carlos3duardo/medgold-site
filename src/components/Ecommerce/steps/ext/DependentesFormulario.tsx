@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as z from 'zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,54 +8,72 @@ import { Form } from '@/components';
 import { ShoppingContext } from '@/contexts';
 import { Button } from '@/components/Button';
 import { isCPF, isDate } from 'brazilian-values';
+import { OfertaProps } from '@/contexts/ShoppingContext';
+
+const formSchema = z.object({
+  nome: z
+    .string()
+    .nonempty('O nome completo é obrigatório')
+    .min(10, { message: 'O nome não pode conter menos de 10 caracteres.' })
+    .max(120, { message: 'O nome não pode conter mais de 120 caracteres.' })
+    .transform((value) => value.toUpperCase()),
+  email: z
+    .string()
+    .nonempty({ message: 'O e-mail é um campo obrigatório' })
+    .email({ message: 'Endereço de e-mail inválido' })
+    .transform((value) => value.toLowerCase()),
+  cpf: z
+    .string()
+    .nonempty({ message: 'O CPF é um campo obrigatório.' })
+    .refine(
+      (value) => {
+        return isCPF(value);
+      },
+      { message: 'CPF inválido.' },
+    )
+    .transform((value) => {
+      return value.replace(/\D/g, '');
+    }),
+  nascimento: z
+    .string()
+    .nonempty({ message: 'O nascimento é um campo obrigatório.' })
+    .refine(
+      (value) => {
+        return isDate(value);
+      },
+      { message: 'Data inválida.' },
+    )
+    .transform((val) => {
+      if (val.length === 10) {
+        const [d, m, Y] = val.split('/');
+
+        return `${Y}-${m}-${d}`;
+      }
+    }),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 export function DependentesFormulario() {
-  const { adicionarDependente, plano, dependentes, atualizarEtapa } =
-    useContext(ShoppingContext);
+  const {
+    adicionarDependente,
+    ofertaId,
+    ofertas,
+    dependentes,
+    atualizarEtapa,
+  } = useContext(ShoppingContext);
 
-  const formSchema = z.object({
-    nome: z
-      .string()
-      .nonempty('O nome completo é obrigatório')
-      .min(10, { message: 'O nome não pode conter menos de 10 caracteres.' })
-      .max(120, { message: 'O nome não pode conter mais de 120 caracteres.' })
-      .transform((value) => value.toUpperCase()),
-    email: z
-      .string()
-      .nonempty({ message: 'O e-mail é um campo obrigatório' })
-      .email({ message: 'Endereço de e-mail inválido' })
-      .transform((value) => value.toLowerCase()),
-    cpf: z
-      .string()
-      .nonempty({ message: 'O CPF é um campo obrigatório.' })
-      .refine(
-        (value) => {
-          return isCPF(value);
-        },
-        { message: 'CPF inválido.' },
-      )
-      .transform((value) => {
-        return value.replace(/\D/g, '');
-      }),
-    nascimento: z
-      .string()
-      .nonempty({ message: 'O nascimento é um campo obrigatório.' })
-      .refine(
-        (value) => {
-          return isDate(value);
-        },
-        { message: 'Data inválida.' },
-      )
-      .transform((val) => {
-        if (val.length === 10) {
-          const [d, m, Y] = val.split('/');
+  const [oferta, setOferta] = useState<OfertaProps | undefined>(undefined);
 
-          return `${Y}-${m}-${d}`;
-        }
-      }),
-  });
+  useEffect(() => {
+    if (ofertaId && ofertas) {
+      const ofertaSelecionada = ofertas.find((item) => item.id === ofertaId);
 
-  type FormData = z.infer<typeof formSchema>;
+      if (ofertaSelecionada) {
+        setOferta(ofertaSelecionada);
+      }
+    }
+  }, [ofertas, ofertaId]);
 
   const methods = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -89,11 +107,11 @@ export function DependentesFormulario() {
     <div>
       <h2 className="text-xl text-slate-600 font-bold my-4">
         {!dependentes || !!dependentes.length ? (
-          <>Você pode adicionar até {plano?.dependentes} dependentes.</>
-        ) : plano && plano.dependentes > dependentes.length ? (
+          <>Você pode adicionar até {oferta?.dependentes} dependentes.</>
+        ) : oferta && oferta.dependentes > dependentes.length ? (
           <>
-            Você pode adicionar +{plano.dependentes - dependentes.length}{' '}
-            {plano.dependentes - dependentes.length > 1
+            Você pode adicionar +{oferta.dependentes - dependentes.length}{' '}
+            {oferta.dependentes - dependentes.length > 1
               ? ' dependentes'
               : 'dependente'}
             .
@@ -103,7 +121,7 @@ export function DependentesFormulario() {
         )}
       </h2>
 
-      {plano && plano.dependentes > dependentes.length ? (
+      {oferta && oferta.dependentes > dependentes.length ? (
         <Form.Root>
           <FormProvider {...methods}>
             <Form.Body onSubmit={handleSubmit(submitForm)}>
