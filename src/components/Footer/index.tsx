@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import logo from '@/assets/images/header-logo-medgold.png';
+import Link from 'next/link';
 
 export function Footer() {
   return (
@@ -17,13 +18,23 @@ export function Footer() {
           </p>
         </div>
       </div>
-      <div className="about py-8 bg-primary-100">
-        <div className="container mx-auto flex items-start justify-between">
+      <div className="about py-8">
+        <div className="container mx-auto flex items-center justify-between">
           <figure>
             <Image src={logo} width={184} height={54} alt="Logotipo MedGold" />
           </figure>
-          <div>menu</div>
-          <div>menu</div>
+          <div className="text-sm font-medium opacity-40">
+            {new Date().getFullYear()} &copy; MedGold. Todos os direitos
+            reservados.
+          </div>
+          <div className="text-sm font-medium">
+            <Link
+              href="/termos"
+              className="text-primary-600 hover:text-primary-800"
+            >
+              Termos de uso
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
