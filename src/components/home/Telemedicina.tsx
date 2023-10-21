@@ -57,7 +57,7 @@ export function Telemedicina() {
       </div>
       <div className="relative container mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-8">
-          <figure className="flex-[42%] lg:flex lg:justify-center">
+          <figure className="flex items-center justify-center lg:flex-[42%] lg:justify-center px-8 lg:px-4">
             <Image
               src={imagem}
               width={451}
@@ -65,15 +65,15 @@ export function Telemedicina() {
               alt="Smartphone com um médico na tela"
             />
           </figure>
-          <div className="flex-[58%] flex flex-col gap-8">
-            <h2 className="text-[3.25rem] leading-tight text-primary-600 font-extrabold uppercase">
+          <div className="flex-[58%] flex flex-col gap-8 px-4">
+            <h2 className="text-center lg:text-left text-2xl lg:text-[3.25rem] leading-tight text-primary-600 font-extrabold uppercase mt-6 lg:mt-0">
               O que é telemedicina?
             </h2>
-            <p className="text-[2.25rem] leading-tight text-primary-800 font-semibold">
+            <p className="text-center lg:text-left text-xl lg:text-[2.25rem] leading-tight text-primary-800 font-semibold">
               São consultas médicas à distância, feitas por vídeo, de qualquer
               lugar que tenha internet.
             </p>
-            <p>
+            <p className="text-center lg:text-left">
               <a href="#contrate">
                 <ButtonCta>Quero contratar agora!</ButtonCta>
               </a>

@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="flex flex-col">
+    <footer className="flex flex-col px-4">
       <div className="disclaimer py-8">
         <div className="container mx-auto">
-          <p className="w-full max-w-7xl mx-auto text-center text-slate-600">
+          <p className="w-full max-w-7xl mx-auto text-center text-slate-600 text-base">
             O serviço de telemedicina é prestado pela BusCare. A MedGold não é
             um plano de saúde, não garante e não se responsabiliza pelos
             serviços oferecidos e pelo paamento das despesas nem assegura
@@ -19,7 +19,7 @@ export function Footer() {
         </div>
       </div>
       <div className="about py-8">
-        <div className="container mx-auto flex items-center justify-between">
+        <div className="container mx-auto flex flex-col gap-4 lg:flex-row items-center justify-between">
           <figure>
             <Image src={logo} width={184} height={54} alt="Logotipo MedGold" />
           </figure>

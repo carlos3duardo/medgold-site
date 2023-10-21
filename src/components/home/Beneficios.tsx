@@ -42,13 +42,16 @@ export function Beneficios() {
   ] as BeneficioProps[];
 
   return (
-    <section className="pt-20 pb-20 bg-primary-600 text-white" id="beneficios">
+    <section
+      className="pt-20 pb-20 bg-primary-600 text-white px-4"
+      id="beneficios"
+    >
       <div className="container mx-auto flex flex-col gap-12">
-        <h2 className="text-[3.25rem] leading-tight font-extrabold text-center">
+        <h2 className="text-2xl lg:text-[3.25rem] leading-tight font-extrabold text-center">
           Benefícios da telemedicina
         </h2>
 
-        <ul className="grid grid-cols-1 lg:grid-cols-3 gap-12 w-full max-w-[64rem] mx-auto">
+        <ul className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-12 w-full max-w-[64rem] mx-auto">
           {beneficios.map((item) => (
             <li
               key={item.descricao}
@@ -60,7 +63,7 @@ export function Beneficios() {
                 height={96}
                 alt={`Icone representando o benefício ${item.descricao}`}
               />
-              <div className="text-center mt-8 text-lg font-bold leading-tight">
+              <div className="text-center mt-8 text-base lg:text-lg font-bold leading-tight">
                 {item.descricao}
               </div>
             </li>

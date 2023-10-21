@@ -9,7 +9,7 @@ export function ComoSeCadastrar() {
   return (
     <section className="pt-20 pb-20 bg-primary-600 text-white" id="como">
       <div className="container mx-auto flex flex-col gap-12">
-        <h2 className="text-[3.25rem] leading-tight font-extrabold text-center">
+        <h2 className="text-2xl lg:text-[3.25rem] leading-tight font-extrabold text-center">
           Como se cadastrar
         </h2>
 

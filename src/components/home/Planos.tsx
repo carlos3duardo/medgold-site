@@ -23,9 +23,12 @@ export function Planos() {
   );
 
   return (
-    <section className="pt-20 pb-20 bg-primary-600 text-white" id="contrate">
+    <section
+      className="pt-20 pb-20 bg-primary-600 text-white px-4"
+      id="contrate"
+    >
       <div className="container mx-auto flex flex-col gap-12">
-        <h2 className="text-[3.25rem] leading-tight font-extrabold text-center">
+        <h2 className="text-2xl lg:text-[3.25rem] leading-tight font-extrabold text-center">
           Planos de assinatura MedGold Plus
         </h2>
 

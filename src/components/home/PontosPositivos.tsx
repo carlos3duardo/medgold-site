@@ -27,9 +27,9 @@ export function PontosPositivos() {
   ] as PontoPositivoProps[];
 
   return (
-    <section className="pt-20 pb-20 bg-white text-primary-600">
+    <section className="pt-20 pb-20 bg-white text-primary-600 px-4">
       <div className="container mx-auto flex flex-col gap-12">
-        <h2 className="text-[3.25rem] leading-tight font-extrabold text-center">
+        <h2 className="text-2xl lg:text-[3.25rem] leading-tight font-extrabold text-center">
           Pontos positivos MedGold
         </h2>
 
@@ -37,7 +37,7 @@ export function PontosPositivos() {
           {beneficios.map((item) => (
             <li
               key={item.descricao}
-              className="bg-primary-600 text-white p-8 rounded-lg flex gap-8 items-center"
+              className="bg-primary-600 text-white p-8 rounded-lg flex flex-col lg:flex-row gap-8 items-center"
             >
               <Image
                 src={item.icone}

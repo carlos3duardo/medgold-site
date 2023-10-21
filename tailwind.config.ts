@@ -59,6 +59,9 @@ const config: Config = {
         shine: 'shine 1s ease infinite',
         backgroundTelemedicina: 'backgroundTelemedicina 25s linear infinite',
       },
+      height: {
+        'mix-screen': '100dvh',
+      },
     },
   },
   plugins: [

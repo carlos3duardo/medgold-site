@@ -27,7 +27,7 @@ export function Header() {
       data-solid-background={solidBg}
       className="fixed top-0 left-0 w-full z-10 transition-all duration-[600ms] data-[solid-background=true]:bg-white data-[solid-background=true]:shadow-md"
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-10">
           <figure>
             <Link href="/">
@@ -41,7 +41,7 @@ export function Header() {
               />
             </Link>
           </figure>
-          <div role="navigation" className="flex gap-2 items-center">
+          <div role="navigation" className="hidden lg:flex gap-2 items-center">
             {menu.map((item) => (
               <a
                 key={item.href}
