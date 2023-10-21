@@ -86,7 +86,7 @@ export function ShoppingProvider({ children }: ShoppingCartProviderProps) {
           setOfertas(
             response.data.data.map((oferta: ApiTypes['Oferta']) => {
               return {
-                id: oferta.uuid,
+                id: oferta.codigo,
                 nome: oferta.nome,
                 descricao: oferta.descricao,
                 dependentes: oferta.dependentes,

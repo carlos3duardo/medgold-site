@@ -1,6 +1,6 @@
 type OfertaProps = {
   id: number;
-  uuid: string;
+  codigo: string;
   nome: string;
   descricao: string;
   dependentes: number;
