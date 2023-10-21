@@ -74,7 +74,9 @@ export function Telemedicina() {
               lugar que tenha internet.
             </p>
             <p>
-              <ButtonCta href="#planos">Quero contratar agora!</ButtonCta>
+              <a href="#contrate">
+                <ButtonCta>Quero contratar agora!</ButtonCta>
+              </a>
             </p>
           </div>
         </div>

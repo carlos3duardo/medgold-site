@@ -26,7 +26,9 @@ export function CartaoDigital() {
               </span>
             </h2>
             <p>
-              <ButtonCta href="#planos">Quero contratar agora!</ButtonCta>
+              <a href="#contrate">
+                <ButtonCta>Quero contratar agora!</ButtonCta>
+              </a>
             </p>
           </div>
         </div>

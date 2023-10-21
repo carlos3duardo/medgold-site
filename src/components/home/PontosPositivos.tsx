@@ -53,7 +53,9 @@ export function PontosPositivos() {
           ))}
         </ul>
         <div className="text-center">
-          <ButtonCta href="#planos">Quero contratar agora</ButtonCta>
+          <a href="#contrate">
+            <ButtonCta>Quero contratar agora</ButtonCta>
+          </a>
         </div>
       </div>
     </section>

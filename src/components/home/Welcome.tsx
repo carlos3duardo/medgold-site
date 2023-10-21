@@ -35,7 +35,9 @@ export function Welcome() {
             </span>
             , e ainda tenha descontos na nossa rede de parceiros.
           </h2>
-          <ButtonCta href="#contrate">Quero contratar agora</ButtonCta>
+          <a href="#contrate">
+            <ButtonCta>Quero contratar agora</ButtonCta>
+          </a>
         </div>
       </div>
     </section>
