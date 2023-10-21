@@ -5,7 +5,7 @@ import { ButtonCta } from '../ButtonCta';
 
 export function CartaoDigital() {
   return (
-    <section className="mt-20 mb-20">
+    <section className="mt-20 mb-20" id="cartao-digital">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-8">
           <figure className="flex-[50%] lg:flex lg:justify-center">

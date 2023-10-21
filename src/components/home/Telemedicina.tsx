@@ -6,7 +6,7 @@ import { ButtonCta } from '../ButtonCta';
 
 export function Telemedicina() {
   return (
-    <section className="py-20 bg-slate-50 relative">
+    <section className="py-20 bg-slate-50 relative" id="o-que-e">
       <div className="absolute top-0 left-0 w-full h-full">
         <ul className="circles absolute top-0 left-0 w-full h-full overflow-hidden">
           <li
