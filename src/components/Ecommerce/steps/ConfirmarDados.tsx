@@ -84,13 +84,13 @@ export function ConfirmarDados() {
             <label className="block text-sm text-slate-400">Profissão:</label>
             <span className="uppercase">{titular.profissao}</span>
           </div>
-          <div className="col-span-12 lg:col-span-4">
+          <div className="col-span-7 lg:col-span-4">
             <label className="block text-sm text-slate-400">Nascimento:</label>
             <span className="uppercase">
               {titular.nascimento ? dateBr(titular.nascimento) : ''}
             </span>
           </div>
-          <div className="col-span-12 lg:col-span-4">
+          <div className="col-span-5 lg:col-span-4">
             <label className="block text-sm text-slate-400">Sexo:</label>
             <span className="uppercase">{titular.sexo_id}</span>
           </div>
@@ -101,19 +101,19 @@ export function ConfirmarDados() {
               {titular.complemento && `, ${titular.complemento}`}
             </span>
           </div>
-          <div className="col-span-12 lg:col-span-4">
+          <div className="col-span-7 lg:col-span-4">
             <label className="block text-sm text-slate-400">Bairro:</label>
             <span className="uppercase">{titular.bairro}</span>
           </div>
-          <div className="col-span-12 lg:col-span-4">
+          <div className="col-span-5 lg:col-span-4">
             <label className="block text-sm text-slate-400">CEP:</label>
             <span className="uppercase">{maskCep(titular.cep)}</span>
           </div>
-          <div className="col-span-12 lg:col-span-4">
+          <div className="col-span-7 lg:col-span-4">
             <label className="block text-sm text-slate-400">Cidade:</label>
             <span className="uppercase">{titular.municipio}</span>
           </div>
-          <div className="col-span-12 lg:col-span-4">
+          <div className="col-span-5 lg:col-span-4">
             <label className="block text-sm text-slate-400">Estado:</label>
             <span className="uppercase">{titular.uf}</span>
           </div>

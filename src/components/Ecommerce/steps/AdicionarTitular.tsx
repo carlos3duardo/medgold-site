@@ -76,7 +76,7 @@ export function AdicionarTitular() {
                   error={errors.nome}
                 />
               </Form.Control>
-              <Form.Control className="col-span-12 md:col-span-4 xl:col-span-4">
+              <Form.Control className="col-span-12 md:col-span-12 xl:col-span-4">
                 <Form.CpfInput label="CPF" name="cpf" error={errors.cpf} />
               </Form.Control>
               <Form.Control className="col-span-12 mb:col-span-8 xl:col-span-8">
@@ -93,21 +93,21 @@ export function AdicionarTitular() {
                   error={errors.telefone}
                 />
               </Form.Control>
-              <Form.Control className="col-span-12 md:col-span-4 xl:col-span-4">
+              <Form.Control className="col-span-12 md:col-span-12 xl:col-span-4">
                 <Form.TextInput
                   label="Profissão"
                   name="profissao"
                   error={errors.profissao}
                 />
               </Form.Control>
-              <Form.Control className="col-span-12 md:col-span-4 xl:col-span-4">
+              <Form.Control className="col-span-12 md:col-span-6 xl:col-span-4">
                 <Form.DateInput
                   label="Nascimento"
                   name="nascimento"
                   error={errors.nascimento}
                 />
               </Form.Control>
-              <Form.Control className="col-span-12 md:col-span-4 xl:col-span-4">
+              <Form.Control className="col-span-12 md:col-span-6 xl:col-span-4">
                 <Form.Select
                   label="Sexo"
                   name="sexo_id"
@@ -151,28 +151,28 @@ export function AdicionarTitular() {
                   isLoading={isCepLoading}
                 />
               </Form.Control>
-              <Form.Control className="col-span-9">
+              <Form.Control className="col-span-12 md:col-span-8 xl:col-span-9">
                 <Form.TextInput
                   label="Endereço"
                   name="logradouro"
                   error={errors.logradouro}
                 />
               </Form.Control>
-              <Form.Control className="col-span-3">
+              <Form.Control className="col-span-3 md:col-span-3 xl:col-span-3">
                 <Form.TextInput
                   label="Número"
                   name="numero"
                   error={errors.numero}
                 />
               </Form.Control>
-              <Form.Control className="col-span-4">
+              <Form.Control className="col-span-9 md:col-span-4">
                 <Form.TextInput
                   label="Complemento"
                   name="complemento"
                   error={errors.complemento}
                 />
               </Form.Control>
-              <Form.Control className="col-span-5">
+              <Form.Control className="col-span-12 md:col-span-5">
                 <Form.TextInput
                   label="Bairro"
                   name="bairro"

@@ -18,13 +18,13 @@ function Etapa({ id, nome, descricao, etapaAtual, atualizaEtapa }: EtapaProps) {
       type="button"
       data-etapa-atual={etapaAtual === id}
       data-concluido={etapaAtual > id}
-      className="flex items-center gap-3 p-2 bg-slate-100 hover:shadow-lg transition-shadow text-slate-600 rounded-full data-[etapa-atual=true]:bg-primary-600 data-[etapa-atual=true]:text-white"
+      className="flex items-center gap-3 p-2 bg-slate-100 hover:shadow-lg transition-shadow text-slate-600 rounded-lg lg:rounded-full data-[etapa-atual=true]:bg-primary-600 data-[etapa-atual=true]:text-white"
       onClick={() => atualizaEtapa(id)}
     >
       <figure
         data-etapa-atual={etapaAtual === id}
         data-concluido={etapaAtual > id}
-        className="h-12 w-12 text-xl font-bold bg-slate-200 text-slate-400 rounded-full flex items-center justify-center data-[etapa-atual=true]:bg-white data-[etapa-atual=true]:text-primary-600 data-[concluido=true]:bg-primary-600 data-[concluido=true]:text-white"
+        className="hidden lg:flex items-center justify-center h-12 w-12 text-xl font-bold bg-slate-200 text-slate-400 rounded-full data-[etapa-atual=true]:bg-white data-[etapa-atual=true]:text-primary-600 data-[concluido=true]:bg-primary-600 data-[concluido=true]:text-white"
       >
         {etapaAtual > id ? <Check /> : id}
       </figure>
@@ -46,7 +46,10 @@ export function ShoppingSteps() {
   }, [etapaAtual]);
 
   return (
-    <div role="list" className="flex flex-col gap-4">
+    <div
+      role="list"
+      className="w-full flex flex-row justify-between lg:flex-col gap-4"
+    >
       {etapas.map((etapa) => (
         <Etapa
           key={etapa.id}

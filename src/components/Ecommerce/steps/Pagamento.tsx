@@ -202,7 +202,7 @@ export function Pagamento() {
               <h2 className="flex items-center gap-2 text-2xl text-slate-600 font-extrabold mb-4 border-b border-slate-300 pb-3">
                 <CreditCard strokeWidth={3} /> Dados do cartão
               </h2>
-              <div className="w-full flex gap-8">
+              <div className="w-full flex flex-col-reverse lg:flex-row gap-8">
                 <Form.Fieldset className="flex-1">
                   <Form.Control className="col-span-12">
                     <Form.TextInput
@@ -245,7 +245,7 @@ export function Pagamento() {
                     />
                   </Form.Control>
                 </Form.Fieldset>
-                <figure className="flex-1">
+                <figure className="flex-1 flex justify-center">
                   <CartaoDeCredito
                     show={cardSide}
                     holder={portador}
@@ -276,14 +276,14 @@ export function Pagamento() {
                     error={errors.portadorNome}
                   />
                 </Form.Control>
-                <Form.Control className="col-span-12 md:col-span-4 xl:col-span-4">
+                <Form.Control className="col-span-12 md:col-span-4">
                   <Form.CpfInput
                     label="CPF"
                     name="portadorCpf"
                     error={errors.portadorCpf}
                   />
                 </Form.Control>
-                <Form.Control className="col-span-12 mb:col-span-8 xl:col-span-8">
+                <Form.Control className="col-span-12 md:col-span-8">
                   <Form.TextInput
                     label="E-mail"
                     name="portadorEmail"
@@ -310,28 +310,28 @@ export function Pagamento() {
                     isLoading={isCepLoading}
                   />
                 </Form.Control>
-                <Form.Control className="col-span-9">
+                <Form.Control className="col-span-12 md:col-span-8 xl:col-span-9">
                   <Form.TextInput
                     label="Endereço"
                     name="portadorLogradouro"
                     error={errors.portadorLogradouro}
                   />
                 </Form.Control>
-                <Form.Control className="col-span-3">
+                <Form.Control className="col-span-4 xl:col-span-3">
                   <Form.TextInput
                     label="Número"
                     name="portadorNumero"
                     error={errors.portadorNumero}
                   />
                 </Form.Control>
-                <Form.Control className="col-span-4">
+                <Form.Control className="col-span-8 xl:col-span-9">
                   <Form.TextInput
                     label="Complemento"
                     name="portadorComplemento"
                     error={errors.portadorComplemento}
                   />
                 </Form.Control>
-                <Form.Control className="col-span-5">
+                <Form.Control className="col-span-12 xl:col-span-5">
                   <Form.TextInput
                     label="Bairro"
                     name="portadorBairro"
@@ -339,7 +339,7 @@ export function Pagamento() {
                     readOnly
                   />
                 </Form.Control>
-                <Form.Control className="col-span-7">
+                <Form.Control className="col-span-8 xl:col-span-5">
                   <Form.TextInput
                     label="Cidade"
                     name="portadorMunicipio"
@@ -347,7 +347,7 @@ export function Pagamento() {
                     readOnly
                   />
                 </Form.Control>
-                <Form.Control className="col-span-5">
+                <Form.Control className="col-span-4 xl:col-span-2">
                   <Form.TextInput
                     label="Estado"
                     name="portadorUf"
